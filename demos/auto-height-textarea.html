@@ -1,0 +1,22 @@
+<!doctype>
+<html>
+	<head>
+		<title>autoresizing textarea</title>
+		<script type="text/javascript" src="jquery.js"/></script>
+	</head>
+	<body>
+		<textarea rows=1></textarea>
+		<script>
+			var oTextArea = $('textarea');
+			var resize = function (event){
+				var cur = oTextArea;
+				cur.css('height', 'auto').css('height', cur.scrollTop() +  cur.css('height') + 0 + 'px');
+			}
+			var delayresize = function(event){
+				setTimeout(resize, 0);
+			}
+			oTextArea.on('change', resize);
+			oTextArea.on('cut paste drop keydown', delayresize);
+		</script>
+	</body>
+</html>
