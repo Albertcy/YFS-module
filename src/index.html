@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>plugintest</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+		
+(function($){
+	$.fn.initVal = function(opts){
+	
+		//  定义默认值
+		$.fn.initVal.defaults = {
+			'defaulttext': ['default value'],
+			'num' : 1,
+			'defaultcolor' : '#a3a3a3',
+			'focuscolor' : '#000'
+		};
+		
+		//  获取参数
+		var options = $.extend({}, $.fn.initVal.defaults, opts);
+		
+		//  获取传入参数（表单中默认的值）
+		var argsDefault = options.defaulttext;
+		
+		this.each(function(index){
+			
+			//	获取表单中的默认值
+			var sDefaultVal = argsDefault[index];
+			
+			//  设置默认值
+			var oInputArea = $(this).val(sDefaultVal);
+			
+			if(sDefaultVal == jQuery.trim(oInputArea.val()))
+			{
+				//	控制背景颜色默认为灰色
+				oInputArea.css('color', options.defaultcolor);
+			}
+			else
+			{
+				//  控制背景颜色
+				oInputArea.css('color', options.focuscolor);
+			}
+			oInputArea.blur(function(){
+				if(sDefaultVal == jQuery.trim(oInputArea.val()) || '' == jQuery.trim(oInputArea.val()))
+				{
+			        oInputArea.val(sDefaultVal).css('color', options.defaultcolor);
+				}
+			}).focus(function(){
+			  if(sDefaultVal==jQuery.trim(oInputArea.val()))
+				{
+					oInputArea.val('').css('color', options.focuscolor);
+				}
+			});
+		});
+		return this;
+	};
+})(jQuery);
+		</script>
+	</head>
+	<body>
+		<textarea id="mytestarea">
+		</textarea>
+	</body>
+	<script type="text/javascript">
+		var defaultInputVal = [
+						 "默认值"
+	                  ];	
+var textArea = $("#mytestarea")
+	.initVal({
+		'defaulttext':["默认值"],
+		
+	});
+	/*.each(function(index){	
+		$(this).val(defaultInputVal[index]);
+		
+	*/
+
+
+	</script>
+</html>

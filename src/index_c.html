@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>plugintest</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="jquery/jquery-1.7.2.min.js"></script>
+	</head>
+	<body>
+		<a target="_blank" href="{$val['url']}"  onclick="click_num(this); return false;" hidefocus="true" rel="nofollow" imgid="{$val['id']}">
+			cc
+		</a>
+	<script type="text/javascript">
+		function click_num(arg)
+		{
+			var oCur = $(arg);
+			console.log(oCur.attr('imgid'));
+			return false;
+		}
+	</script>
+	</body>
+</html>
